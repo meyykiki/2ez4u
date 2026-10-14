@@ -1,7 +1,7 @@
 
 # 2EZ4U Food Delivery - Backend Engine & UI System 
 
-Dokumentasi resmi proyek akhir mata kuliah **Struktur Data dan Analisis Algoritma **. Proyek ini mengembangkan *engine backend* layanan pesan-antar makanan/barang versi mini (*GoFood/GrabFood/ShopeeFood*) secara mandiri menggunakan Python  serta antarmuka grafis (*GUI*) berbasis Tkinter.
+Dokumentasi resmi proyek akhir mata kuliah Struktur Data dan Analisis Algoritma. Proyek ini mengembangkan engine backend layanan pesan-antar makanan/barang versi mini (GoFood/GrabFood/ShopeeFood) secara mandiri menggunakan Python  serta antarmuka grafis (GUI) berbasis Tkinter.
 
 
 
