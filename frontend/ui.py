@@ -10,7 +10,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."
 try:
     from backend.m1_pesanan import Array, LinkList, Pesanan, baca_csv
     from backend.m2_antrean import SistemAntrean, hitung_struk
-    from backend.m3_pesanan import insertion_sort, merge_sort, linear_search, binary_search
+    from backend.m3_periksa import insertion_sort, merge_sort, linear_search, binary_search
 except ImportError as e:
     print(f"Error import backend: {e}")
     print("Pastikan script ini dijalankan di dalam folder 'frontend' dan folder 'backend' ada di parent direktori.")
