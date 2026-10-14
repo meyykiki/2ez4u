@@ -1,2 +1,2 @@
-# 2ez4u
+# repo
 projek strukdat meli
