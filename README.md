@@ -1,24 +1,24 @@
 
-# 2EZ4U Food Delivery - Backend Engine & UI System 🛵🍔
+# 2EZ4U Food Delivery - Backend Engine & UI System 
 
 Dokumentasi resmi proyek akhir mata kuliah **Struktur Data dan Analisis Algoritma (EC234303)**. Proyek ini mengembangkan *engine backend* layanan pesan-antar makanan/barang versi mini (*GoFood/GrabFood/ShopeeFood*) secara mandiri menggunakan Python murni serta antarmuka grafis (*GUI*) berbasis Tkinter.
 
 
 
 ---
-## 👥 Kontributor / Kolaborator
+##  Kontributor / Kolaborator
 
 * **Nama**: MELLY KIKI AGUSTINA
 * **NRP**: 5024251008
 * **Mata Kuliah**: Struktur Data dan Analisis Algoritma
 ---
 
-## 📖 Deskripsi Proyek
+##  Deskripsi Proyek
 **2EZ4U** dirancang untuk menangani trafik sistem pemesanan berskala besar dengan simulasi basis data mencapai **200.000 baris data CSV**. Titik berat penilaian bukan pada estetika tampilan *frontend*, melainkan pada **implementasi murni struktur data dan algoritma buatan sendiri** untuk menguji performa, efisiensi memori, serta kompleksitas waktu eksekusi (*Time Complexity*).
 
 ---
 
-## ⚙️ Aturan Main & Batasan Teknis
+##  Aturan Main & Batasan Teknis
 Sesuai dengan spesifikasi proyek, pengembangan backend mematuhi aturan ketat berikut:
 * **Proyek Individu**: Dikembangkan sepenuhnya secara mandiri.
 * **Larangan Penggunaan Fungsi Instan**: Dilarang keras menggunakan fungsi bawaan Python seperti `dict`, `set`, `sorted()`, `.sort()`, `heapq`, `bisect`, modul `collections`, literatur kurung kurawal `{}` untuk kamus, serta *dictionary/set comprehension*.
@@ -26,14 +26,14 @@ Sesuai dengan spesifikasi proyek, pengembangan backend mematuhi aturan ketat ber
 
 ---
 
-## 🛠️ Alat & Teknologi yang Digunakan
+##  Alat & Teknologi yang Digunakan
 * **Bahasa Pemrograman**: Python versi 3.11+
 * **Antarmuka (GUI)**: Pustaka standar Python Tkinter
 * **Manajemen Data**: Berkas CSV mentah (*Comma Separated Values*)
 * **IDE**: Visual Studio Code
 
 ---
-## 🚀 Cara Menjalankan & Menggunakan Aplikasi
+## Cara Menjalankan & Menggunakan Aplikasi
 
 ### 1. Menjalankan Program di Komputer Lokal
 
@@ -60,7 +60,7 @@ python frontend/ui.py
 
 
 ---
-## ✨ Penjelasan Detail Milestone & Fitur (M1 - M3)
+##  Penjelasan Detail Milestone & Fitur (M1 - M3)
 
 ### M1: Data Pesanan (Array vs Linked List)
 
@@ -97,7 +97,7 @@ Modul `m3_periksa.py` menyediakan fungsi laporan harian terurut dan pencarian da
 * **Binary Search ($O(\log n)$)**: Teknik pencarian cepat dengan membuang separuh sisa rentang data pada tiap langkah perbandingan. Menuntut data harus diurutkan terlebih dahulu (menggunakan Merge Sort di awal).
 
 ---
-## 📁 Struktur Direktori & Penjelasan
+##  Struktur Direktori & Penjelasan
 Repositori ini diorganisasikan menjadi tiga *layer* utama untuk memisahkan data, logika komputasi, dan antarmuka pengguna:
 
 ```text
