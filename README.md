@@ -1,7 +1,7 @@
 
 # 2EZ4U Food Delivery - Backend Engine & UI System 
 
-Dokumentasi resmi proyek akhir mata kuliah **Struktur Data dan Analisis Algoritma (EC234303)**. Proyek ini mengembangkan *engine backend* layanan pesan-antar makanan/barang versi mini (*GoFood/GrabFood/ShopeeFood*) secara mandiri menggunakan Python murni serta antarmuka grafis (*GUI*) berbasis Tkinter.
+Dokumentasi resmi proyek akhir mata kuliah **Struktur Data dan Analisis Algoritma **. Proyek ini mengembangkan *engine backend* layanan pesan-antar makanan/barang versi mini (*GoFood/GrabFood/ShopeeFood*) secara mandiri menggunakan Python  serta antarmuka grafis (*GUI*) berbasis Tkinter.
 
 
 
@@ -14,13 +14,13 @@ Dokumentasi resmi proyek akhir mata kuliah **Struktur Data dan Analisis Algoritm
 ---
 
 ##  Deskripsi Proyek
-**2EZ4U** dirancang untuk menangani trafik sistem pemesanan berskala besar dengan simulasi basis data mencapai **200.000 baris data CSV**. Titik berat penilaian bukan pada estetika tampilan *frontend*, melainkan pada **implementasi murni struktur data dan algoritma buatan sendiri** untuk menguji performa, efisiensi memori, serta kompleksitas waktu eksekusi (*Time Complexity*).
+**2EZ4U** dirancang untuk menangani trafik sistem pemesanan berskala besar dengan simulasi basis data mencapai **200.000 baris data CSV**. Titik berat penilaian bukan pada estetika tampilan *frontend*, melainkan pada **implementasi murni struktur data dan algoritma** untuk menguji performa, efisiensi memori, serta kompleksitas waktu eksekusi (*Time Complexity*).
 
 ---
 
-##  Aturan Main & Batasan Teknis
+##  Batasan Teknis
 Sesuai dengan spesifikasi proyek, pengembangan backend mematuhi aturan ketat berikut:
-* **Proyek Individu**: Dikembangkan sepenuhnya secara mandiri.
+* **Proyek Individu**: Dikembangkan secara mandiri.
 * **Larangan Penggunaan Fungsi Instan**: Dilarang keras menggunakan fungsi bawaan Python seperti `dict`, `set`, `sorted()`, `.sort()`, `heapq`, `bisect`, modul `collections`, literatur kurung kurawal `{}` untuk kamus, serta *dictionary/set comprehension*.
 * **Pengecualian yang Diizinkan**: Penggunaan struktur data `list` bawaan dibatasi hanya sebagai array primitif, serta diperbolehkan menggunakan `tuple`, operasi aritmetika dasar, dan fungsi *I/O* standar.
 
