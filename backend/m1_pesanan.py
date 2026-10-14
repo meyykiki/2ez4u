@@ -1,13 +1,3 @@
-"""
-backend/m1_pesanan.py
-M1: Data Pesanan - Array (dynamic array) vs LinkList (singly linked list)
-
-Aturan: tanpa dict, set, sorted, .sort(), heapq, bisect, collections,
-literal {}, dan comprehension dict/set. List Python hanya dipakai sebagai
-larik primitif berukuran tetap ([None] * kapasitas) + indeks manual.
-Tidak memakai list.append / insert / pop.
-"""
-
 import os
 import time
 
@@ -79,6 +69,40 @@ def _ke_pesanan(f):
                    int(f[5]), int(f[6]), t_selesai, f[8])
 
 
+def baca_csv(path):
+    """
+    Fungsi tambahan untuk M2: Membaca CSV dan mengembalikan list of Pesanan.
+    Sesuai aturan M1: Tidak memakai list.append(), menggunakan alokasi statis.
+    """
+    # 1. Hitung total baris terlebih dahulu untuk alokasi memori
+    total_baris = 0
+    with open(path, "r", encoding="utf-8") as fh:
+        for _ in fh:
+            total_baris += 1
+
+    # 2. Buat larik statis dengan ukuran total_baris
+    hasil = [None] * total_baris
+    idx = 0
+
+    # 3. Baca ulang dan isi larik
+    with open(path, "r", encoding="utf-8") as fh:
+        pertama = True
+        for baris in fh:
+            if pertama:
+                pertama = False
+                continue
+            if baris.strip() == "":
+                continue
+            f, k = _pecah_baris(baris)
+            if k < 9:
+                continue
+            hasil[idx] = _ke_pesanan(f)
+            idx += 1
+
+    # Kembalikan hanya bagian array yang terisi data valid (memotong elemen None sisa)
+    return hasil[:idx]
+
+
 def muat_csv(path, array, linked):
     """
     Baca CSV, isi Array dan LinkList dengan data yang sama
@@ -110,9 +134,11 @@ def muat_csv(path, array, linked):
 class Array:
     def __init__(self, kapasitas=4):
         if kapasitas < 1:
-            kapasitas = 1
-        self.data = [None] * kapasitas
-        self.kapasitas = kapasitas
+            cap = 1
+        else:
+            cap = kapasitas
+        self.data = [None] * cap
+        self._kapasitas = cap
         self.n = 0
         self.total_geser = 0     
         self.total_salin = 0     
@@ -121,8 +147,11 @@ class Array:
     def __len__(self):
         return self.n
 
+    def kapasitas(self):
+        return self._kapasitas
+
     def _tumbuh(self):
-        baru = [None] * (self.kapasitas * 2)
+        baru = [None] * (self._kapasitas * 2)
         i = 0
         while i < self.n:
             baru[i] = self.data[i]
@@ -130,7 +159,7 @@ class Array:
         self.total_salin += self.n
         self.jumlah_resize += 1
         self.data = baru
-        self.kapasitas = self.kapasitas * 2
+        self._kapasitas = self._kapasitas * 2
 
     def get(self, i):
         if i < 0 or i >= self.n:
@@ -138,7 +167,7 @@ class Array:
         return self.data[i]
 
     def append(self, v):
-        if self.n == self.kapasitas:
+        if self.n == self._kapasitas:
             self._tumbuh()
         self.data[self.n] = v
         self.n += 1
@@ -146,7 +175,7 @@ class Array:
     def insert(self, i, v):
         if i < 0 or i > self.n:
             raise IndexError("posisi sisip %d di luar jangkauan (0..%d)" % (i, self.n))
-        if self.n == self.kapasitas:
+        if self.n == self._kapasitas:
             self._tumbuh()
         j = self.n
         while j > i:
@@ -168,6 +197,15 @@ class Array:
         self.data[self.n - 1] = None
         self.n -= 1
         return nilai
+
+    def isi(self):
+        """Tambahan untuk M2: kembalikan list representasi isi saat ini"""
+        hasil = [None] * self.n
+        i = 0
+        while i < self.n:
+            hasil[i] = self.data[i]
+            i += 1
+        return hasil
 
     def tambah_reguler(self, v):
         self.append(v)
@@ -195,7 +233,7 @@ class Array:
     def stats(self):
         return (
             ("array_len", self.n),
-            ("array_capacity", self.kapasitas),
+            ("array_capacity", self._kapasitas),
             ("array_total_geser", self.total_geser),
             ("array_total_salin", self.total_salin),
             ("array_resize", self.jumlah_resize),
@@ -284,6 +322,17 @@ class LinkList:
         self.n -= 1
         return target.nilai
 
+    def isi(self):
+        """Tambahan opsional untuk mengintip isi linked list"""
+        out = [None] * self.n
+        cur = self.head
+        i = 0
+        while cur is not None:
+            out[i] = cur.nilai
+            cur = cur.next
+            i += 1
+        return out
+
     def tambah_reguler(self, v):
         self.append(v)
         return self.n - 1
@@ -344,7 +393,7 @@ def _uji_kecil():
         p = _buat("R%d" % k, 3)
         a.tambah(p)
         l.tambah(p)
-    assert a.kapasitas == 8 and a.jumlah_resize == 1
+    assert a.kapasitas() == 8 and a.jumlah_resize == 1
     p = _buat("P1", 2); a.tambah(p); l.tambah(p)
     p = _buat("V1", 1); a.tambah(p); l.tambah(p)
     harapan = ["V1", "R1", "R2", "P1", "R3", "R4", "R5"]
@@ -383,7 +432,7 @@ def _bandingkan(path):
     print("Total Baris : %d baris" % n)
     print("Waktu Muat  : %.2f detik" % (time.perf_counter() - t0))
     print("Info Array  : kapasitas=%d, resize=%dx, salin=%d elemen" 
-          % (a.kapasitas, a.jumlah_resize, a.total_salin))
+          % (a.kapasitas(), a.jumlah_resize, a.total_salin))
     
     print("-" * 50)
     print(" BENCHMARK INSERT (Array vs Linked List)")
@@ -407,7 +456,6 @@ if __name__ == "__main__":
     print("=== Menjalankan Uji Kecil ===")
     _uji_kecil()
 
-    # Perbaikan: Mencari file "pesanan.csv" sesuai dengan struktur folder yang ada
     nama_file = "pesanan.csv"
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     path_data = os.path.join(base_dir, 'data', nama_file)
